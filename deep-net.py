@@ -1,6 +1,8 @@
 ################################################################################
-#Tutorial/test based on YouTube user "sentdex"'s tutorial series "Deep Learning
-# with Neural Networks and Tensorflow"
+# Neural network for classifying MNIST digits.
+#
+# Tutorial/test based on YouTube user "sentdex"'s tutorial series "Deep Learning
+# with Neural Networks and Tensorflow".
 ################################################################################
 
 import tensorflow as tf
@@ -22,6 +24,7 @@ y = tf.placeholder('float') #Placeholder for labels for the data
 def neural_network_model(data):
     #Basic feed-forward neural network
 
+    # Declare initial weight values:
     hidden_1_layer = {'weights':tf.Variable(tf.random_normal([784, n_nodes_hl1])),
                     'biases':tf.Variable(tf.random_normal([n_nodes_hl1]))}
 
@@ -34,6 +37,7 @@ def neural_network_model(data):
     output_layer = {'weights':tf.Variable(tf.random_normal([n_nodes_hl3, n_classes])),
                     'biases':tf.Variable(tf.random_normal([n_classes]))}
 
+    # Feed-forward math operations defined below here:
     l1 = tf.add( tf.matmul(data,hidden_1_layer['weights']), hidden_1_layer['biases'] )
     l1 = tf.nn.relu(l1) #Using rectified linear function
 
@@ -57,9 +61,10 @@ def train_neural_network(x):
     hm_epochs = 10 # cycles of feed-forward with backpropagation
 
     with tf.Session() as sess:
+        # The graph's calculations are executed using sess.run():
         sess.run(tf.global_variables_initializer())
 
-        for epoch in range(hm_epochs):
+        for epoch in range(hm_epochs): # epoch = one loop through all of the training data
             epoch_loss = 0
             for _ in range(int(mnist.train.num_examples / batch_size)):
                 epoch_x, epoch_y = mnist.train.next_batch(batch_size)
