@@ -3,6 +3,10 @@
 #
 # Tutorial/test based on YouTube user "sentdex"'s tutorial series "Deep Learning
 # with Neural Networks and Tensorflow".
+#
+# With n_nodes_hl1 = n_nodes_hl2 = n_nodes_hl3 = 500, batch_size=100, and
+# n_epochs=10, I get a test accuracy of 94.8% or 94.9% on the MNIST dataset.
+# Takes 10.87s to train using this scenario on an NVIDIA GTX 1060 6GB GPU.
 ################################################################################
 
 import tensorflow as tf
